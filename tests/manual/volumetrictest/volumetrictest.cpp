@@ -255,15 +255,15 @@ void VolumetricModifier::testSubtextureSetting()
 
     // Do some visible swaps on volume 3
     QImage slice = m_volumeItem3->renderSlice(Qt::XAxis, 144);
-    slice = slice.mirrored();
+    slice.flip();
     m_volumeItem3->setSubTextureData(Qt::XAxis, 144, slice);
 
     slice = m_volumeItem3->renderSlice(Qt::YAxis, 80);
-    slice = slice.mirrored();
+    slice.flip();
     m_volumeItem3->setSubTextureData(Qt::YAxis, 80, slice);
 
     slice = m_volumeItem3->renderSlice(Qt::ZAxis, 190);
-    slice = slice.mirrored(true, false);
+    slice.flip(Qt::Horizontal);
     m_volumeItem3->setSubTextureData(Qt::ZAxis, 190, slice);
 }
 
@@ -404,7 +404,7 @@ void VolumetricModifier::createVolume()
     uchar *p = data;
 
     // Change one picture using subtexture replacement
-    QImage flipped = logo.mirrored();
+    QImage flipped = logo.flipped();
     m_volumeItem->setSubTextureData(Qt::ZAxis, 100, flipped);
 
     // Clean up the two extra pixels
@@ -536,7 +536,7 @@ void VolumetricModifier::createAnotherVolume()
                                        zRange * 2.0f));
 
     // Change one picture using subtexture replacement
-    QImage flipped = logo.mirrored();
+    QImage flipped = logo.flipped();
     m_volumeItem2->setSubTextureData(Qt::ZAxis, 100, flipped);
     //m_volumeItem2->setAlphaMultiplier(0.2f);
     m_volumeItem2->setPreserveOpacity(false);
